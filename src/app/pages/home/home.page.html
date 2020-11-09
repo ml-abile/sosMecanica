@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-footer class="imagem">
+      <img src="assets/icon/logo3.png">
+    </ion-footer>
+    <ion-title style="text-align: center;">Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card routerLink='/agendamento-add-edit'>
+    <ion-card-header>
+      <ion-row>
+        <ion-col size="4">
+          <img src="assets/icon/calendar.png">
+        </ion-col>
+        <ion-col size="8">
+          <ion-card-title style="text-align: center;">Agendamento</ion-card-title>
+          <ion-card-subtitle style="text-align: center;">Realizar um agendamento</ion-card-subtitle>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card routerLink='/cadastrar-veiculos'>
+    <ion-card-header>
+      <ion-row>
+        <ion-col size="4">
+          <img src="assets/icon/car.png">
+        </ion-col>
+        <ion-col size="8">
+          <ion-card-title style="text-align: center;">Veículos</ion-card-title>
+          <ion-card-subtitle style="text-align: center;">Cadastar um veículo</ion-card-subtitle>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

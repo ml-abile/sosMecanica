@@ -1,0 +1,77 @@
+<ion-toolbar color="secondary">
+  <ion-buttons slot="start">
+    <ion-menu-button menu="main-menu"></ion-menu-button>
+  </ion-buttons>
+  <ion-footer class="imagem">
+    <img src="assets/icon/logo2.png">
+  </ion-footer>
+  <ion-title style="text-align: center;">Perfil</ion-title>
+</ion-toolbar>
+
+<ion-content class="no-padding" [fullscreen]="true">
+
+  <ion-item lines="none">
+    <ion-label position="stacked">Nome Completo</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label position="stacked">Data de Nascimento</ion-label>
+    <ion-input type="number"></ion-input>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label position="stacked">Endereço</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-row>
+    <ion-col>
+      <ion-item lines="none">
+        <ion-label position="stacked">Número</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item lines="none">
+        <ion-label position="stacked">Bairro</ion-label>
+        <ion-input type="number"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item lines="none">
+        <ion-label position="stacked">Cidade</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item lines="none">
+        <ion-label position="stacked">CEP</ion-label>
+        <ion-input type="number"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item lines="none">
+        <ion-label position="stacked">Celular</ion-label>
+        <ion-input type="tel"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item lines="none">
+        <ion-label position="stacked">Telefone</ion-label>
+        <ion-input type="tel"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-button class="descer" color="tertiary" expand="block">
+    <ion-icon name="arrow-forward-outline"></ion-icon>
+  </ion-button>
+
+</ion-content>

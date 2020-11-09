@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-footer class="imagem">
+      <img src="assets/icon/logo2.png">
+    </ion-footer>
+    <ion-title style="text-align: center;">Agendamento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding" [fullscreen]="true">
+  <ion-item class="descer">
+    <ion-label>Quando ?</ion-label>
+    <ion-datetime display-format="DD/MM/YYYY" cancelText="Cancelar" doneText="Ok" placeholder="Selecione a data"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label class="descer">Qual Horário ?</ion-label>
+    <ion-datetime display-format="hh:mm" picker-format="hh:mm" cancelText="Cancelar" doneText="Ok"></ion-datetime>
+  </ion-item>
+
+  <ion-item class="descer">
+    <ion-label>Veículo</ion-label>
+    <ion-select value="notifications" interface="action-sheet" cancelText="Cancelar">
+      <ion-select-option value="enable">Corsa</ion-select-option>
+      <ion-select-option value="mute">Gol</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item class="descer">
+    <div>Escolha a opção desejada: </div>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-checkbox color="secondary" slot="start"></ion-checkbox>
+          <ion-label>Levar até a Oficina</ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col>
+        <ion-item>
+          <ion-checkbox color="secondary" slot="start"></ion-checkbox>
+          <ion-label>Técnico buscar no local</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+
+  <ion-item class="descer">
+    <ion-label>Observações: </ion-label>
+    <ion-textarea type="text" size="500"></ion-textarea>
+  </ion-item>
+
+  <ion-button class="descer" color="tertiary" expand="block">Finalizar Agendamento</ion-button>
+
+</ion-content>

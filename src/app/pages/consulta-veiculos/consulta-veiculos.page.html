@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-footer class="imagem">
+      <img src="assets/icon/logo2.png">
+    </ion-footer>
+    <ion-title style="text-align: center;">Consulta de Veículos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card *ngFor="let itens of itens">
+    <ion-card-header>
+      <ion-icon size="large" class="botao" name="trash"></ion-icon>
+      <ion-icon size="large" class="botao" name="ellipsis-horizontal-circle-sharp"></ion-icon>
+      <ion-card-title> {{ itens.Marca }} {{itens.Modelo}} {{itens.Ano}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p> {{ itens.Tipo }} {{ itens.Cor }} {{ itens.Combustivel }} </p>
+      <div style="font-weight: bold;">{{ itens.Placa }}</div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

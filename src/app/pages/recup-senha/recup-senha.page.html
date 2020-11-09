@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-footer class="imagem">
+      <img src="assets/icon/logo2.png">
+    </ion-footer>
+    <ion-title style="text-align: center;">Recuperar Senha</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+
+  <form class="ion-padding-top" #form="ngForm" (ngSubmit)="resetSenha(form)">
+    <div class="ion-text-center">
+      <p>Digite seu email para enviarmos as intruções para recuperar sua senha </p>
+    </div>
+    <ion-item>
+      <ion-input [(ngModel)]="user.email" name="email" type="email" placeholder="Digite seu e-mail aqui"></ion-input>
+    </ion-item>
+    <ion-button color="secondary" class="ion-margin-top" (click)="resetSenha(user.email)" expand="block"> Enviar
+    </ion-button>
+
+  </form>
+</ion-content>

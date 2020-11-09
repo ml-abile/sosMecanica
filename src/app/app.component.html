@@ -1,0 +1,50 @@
+<ion-app>
+  <ion-menu menuId="main-menu" contentId="main">
+    <ion-content>
+      <div class="menu-header-bg"></div>
+      <div class="header-content">
+        <img src="../assets/img/avatar.png" alt="">
+        <ion-label>
+          <h2>José Antonio</h2>
+          <p>Barra Bonita/SP</p>
+        </ion-label>
+      </div>
+
+      <ion-list class="menu-items" lines="none">
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink=''>
+            <ion-icon name="home-outline"></ion-icon>Home
+          </ion-item>
+          <ion-item routerLink='/perfil-add-edit'>
+            <ion-icon name="person-outline"></ion-icon>Perfil
+          </ion-item>
+          <ion-item routerLink='/consulta-agendamentos'>
+            <ion-icon name="calendar-outline"></ion-icon>Meus Agendamentos
+          </ion-item>
+          <ion-item routerLink='/consulta-veiculos'>
+            <ion-icon name="car-sport-outline"></ion-icon>Meus Veículos
+          </ion-item>
+          <ion-item>
+            <ion-icon name="settings-outline"></ion-icon>Configurações
+          </ion-item>
+          <ion-item (click)="logout()">
+            <ion-icon name="exit-outline" ></ion-icon>Sair
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+
+      <ion-list class="menu-items" lines="none"> 
+        <center>
+          <ion-icon name="logo-facebook"></ion-icon>
+
+          <ion-icon name="logo-instagram"></ion-icon>
+
+          <ion-icon name="logo-twitter"></ion-icon>
+        </center>
+      </ion-list>
+
+
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>
