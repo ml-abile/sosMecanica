@@ -10,39 +10,90 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="padding">
 
-  <ion-item>
-    <ion-input class="descer" type="number" placeholder="Ano de Fabricação"></ion-input>
-  </ion-item>
+  <form [formGroup]="formVeiculos">
 
-  <ion-item>
-    <ion-input class="descer" type="name" placeholder="Marca"></ion-input>
-  </ion-item>
+    <ion-item class="descer" lines="none">
+      <ion-label position="fixed">Marca</ion-label>
+      <ion-input formControlName="marca" type="text"></ion-input>
+      <ng-container *ngFor="let erro of msg_validacao.marca">
+        <span class="msg-erro"
+          *ngIf="formVeiculos.get('marca').hasError(erro.tipo) && (formVeiculos.get('marca').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
+    </ion-item>
 
-  <ion-item>
-    <ion-input class="descer" type="name" placeholder="Modelo"></ion-input>
-  </ion-item>
+    <ion-item class="descer" lines="none"> 
+      <ion-label position="fixed">Modelo</ion-label>
+      <ion-input formControlName="modelo" type="text"></ion-input>
+      <ng-container *ngFor="let erro of msg_validacao.modelo">
+        <span class="msg-erro"
+          *ngIf="formVeiculos.get('modelo').hasError(erro.tipo) && (formVeiculos.get('modelo').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
+    </ion-item>
 
-  <ion-item>
-    <ion-input class="descer" type="name" placeholder="Cor"></ion-input>
-  </ion-item>
+    <ion-item  class="descer" lines="none">
+      <ion-label position="fixed">Ano</ion-label>
+      <ion-input formControlName="ano" type="number"></ion-input>
+      <ng-container *ngFor="let erro of msg_validacao.ano">
+        <span class="msg-erro"
+          *ngIf="formVeiculos.get('ano').hasError(erro.tipo) && (formVeiculos.get('ano').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
+    </ion-item>
 
-  <ion-item>
-    <ion-input class="descer" type="name" placeholder="Placa"></ion-input>
-  </ion-item>
+    <ion-item  class="descer" lines="none">
+      <ion-label position="fixed">KM Atual</ion-label>
+      <ion-input formControlName="km" type="number"></ion-input>
+      <!-- <ng-container *ngFor="let erro of msg_validacao.km">
+        <span class="msg-erro"
+          *ngIf="formVeiculos.get('km').hasError(erro.tipo) && (formVeiculos.get('km').dirty || formVeiculos.get('km').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container> -->
+    </ion-item>
 
-  <ion-item>
-    <ion-input class="descer" type="name" placeholder="Categoria"></ion-input>
-  </ion-item>
+    <ion-item  class="descer" lines="none"> 
+      <ion-label position="fixed">Cor</ion-label>
+      <ion-input formControlName="cor" type="text"></ion-input>
+      <!-- <ng-container *ngFor="let erro of msg_validacao.cor">
+        <span class="msg-erro"
+          *ngIf="formVeiculos.get('cor').hasError(erro.tipo) && (formVeiculos.get('cor').dirty || formVeiculos.get('cor').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container> -->
+    </ion-item>
 
-  <ion-item>
-    <ion-input class="descer" type="name" placeholder="Combustível"></ion-input>
-  </ion-item>
+    <ion-item  class="descer" lines="none"> 
+      <ion-label position="fixed">Placa</ion-label>
+      <ion-input formControlName="placa" type="text"></ion-input>
+      <ng-container *ngFor="let erro of msg_validacao.placa">
+        <span class="msg-erro"
+          *ngIf="formVeiculos.get('placa').hasError(erro.tipo) && (formVeiculos.get('placa').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
+    </ion-item>
 
-  <ion-button class="descer" color="tertiary" expand="block">
-    <ion-icon name="arrow-forward-outline"></ion-icon>
-  </ion-button>
+    <ion-item  class="descer" lines="none">
+      <ion-label position="fixed">Combustível</ion-label>
+      <ion-input formControlName="combust" type="text"></ion-input>
+      <!-- <ng-container *ngFor="let erro of msg_validacao.combust">
+        <span class="msg-erro"
+          *ngIf="formVeiculos.get('combust').hasError(erro.tipo) && (formVeiculos.get('combust').dirty || formVeiculos.get('combust').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container> -->
+    </ion-item>
 
+    <ion-button class="descer" color="tertiary" expand="block">
+      <ion-icon name="arrow-forward-outline"></ion-icon>
+    </ion-button>
+  </form>
 
 </ion-content>
