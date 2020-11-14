@@ -11,48 +11,76 @@
 </ion-header>
 
 
-<ion-content class="ion-padding" [fullscreen]="true">
-  <ion-item class="descer">
-    <ion-label>Quando ?</ion-label>
-    <ion-datetime display-format="DD/MM/YYYY" cancelText="Cancelar" doneText="Ok" placeholder="Selecione a data"></ion-datetime>
-  </ion-item>
-  <ion-item>
-    <ion-label class="descer">Qual Horário ?</ion-label>
-    <ion-datetime display-format="hh:mm" picker-format="hh:mm" cancelText="Cancelar" doneText="Ok"></ion-datetime>
-  </ion-item>
+<ion-content [fullscreen]="true">
+  <form [formGroup]="formAgend">
+    <ion-item class="descer" lines="none">
+      <ion-label>Quando ?</ion-label>
+      <ion-datetime display-format="DD/MM/YYYY" cancelText="Cancelar" doneText="Ok" placeholder="Selecione a data" formControlName="diaAgend">
+      </ion-datetime>
+      <ng-container *ngFor="let erro of msg_validacao.diaAgend">
+        <span class="msg-erro" *ngIf="formAgend.get('diaAgend').hasError(erro.tipo) && (formAgend.get('diaAgend').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
+    </ion-item>
 
-  <ion-item class="descer">
-    <ion-label>Veículo</ion-label>
-    <ion-select value="notifications" interface="action-sheet" cancelText="Cancelar">
-      <ion-select-option value="enable">Corsa</ion-select-option>
-      <ion-select-option value="mute">Gol</ion-select-option>
-    </ion-select>
-  </ion-item>
+    <ion-item lines="none">
+      <ion-label class="descer">Qual Horário ?</ion-label>
+      <ion-datetime display-format="hh:mm" picker-format="hh:mm" cancelText="Cancelar" doneText="Ok" placeholder="Selecione o horário" formControlName="horaAgend">
+      </ion-datetime>
+      <ng-container *ngFor="let erro of msg_validacao.horaAgend">
+        <span class="msg-erro" *ngIf="formAgend.get('horaAgend').hasError(erro.tipo) && (formAgend.get('horaAgend').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
+    </ion-item>
 
-  <ion-item class="descer">
-    <div>Escolha a opção desejada: </div>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-checkbox color="secondary" slot="start"></ion-checkbox>
-          <ion-label>Levar até a Oficina</ion-label>
-        </ion-item>
-      </ion-col>
+    <ion-item lines="none" class="descer">
+      <ion-label>Veículo</ion-label>
+      <ion-select value="veiculos" lines="none" cancelText="Cancelar" doneText="Ok" formControlName="veiculo">
+        <ion-select-option value="corsa">Corsa</ion-select-option>
+        <ion-select-option value="gol">Gol</ion-select-option>
+      </ion-select>
+      <ng-container *ngFor="let erro of msg_validacao.veiculo">
+        <span class="msg-erro" *ngIf="formAgend.get('veiculo').hasError(erro.tipo) && (formAgend.get('veiculo').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
+    </ion-item>
 
-      <ion-col>
-        <ion-item>
-          <ion-checkbox color="secondary" slot="start"></ion-checkbox>
-          <ion-label>Técnico buscar no local</ion-label>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-item>
+    <ion-radio-group value="levaTras" lines="none">
+      <ion-list-header>
+        <ion-label>Selecione a opção</ion-label>
+      </ion-list-header>
 
-  <ion-item class="descer">
-    <ion-label>Observações: </ion-label>
-    <ion-textarea type="text" size="500"></ion-textarea>
-  </ion-item>
+      <ion-item lines="none">
+        <ion-label>Levar até a Oficina</ion-label>
+        <ion-radio slot="start" color="secondary" value="leva"></ion-radio>
+      </ion-item>
 
-  <ion-button class="descer" color="tertiary" expand="block">Finalizar Agendamento</ion-button>
+      <ion-item lines="none">
+        <ion-label>Técnico buscar no local</ion-label>
+        <ion-radio slot="start" color="secondary" value="busca"></ion-radio>
+      </ion-item>
+      <ng-container *ngFor="let erro of msg_validacao.obs">
+        <span class="msg-erro" *ngIf="formAgend.get('obs').hasError(erro.tipo) && (formAgend.get('obs').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
+    </ion-radio-group>
 
+
+    <ion-item class="descer" lines="none">
+      <ion-label>Observações: </ion-label>
+      <ion-textarea type="text" size="500" formControlName="obs"></ion-textarea>
+      <ng-container *ngFor="let erro of msg_validacao.obs">
+        <span class="msg-erro" *ngIf="formAgend.get('obs').hasError(erro.tipo) && (formAgend.get('obs').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
+    </ion-item>
+
+    <ion-button class="descer" color="tertiary" expand="block">Finalizar Agendamento</ion-button>
+
+  </form>
 </ion-content>

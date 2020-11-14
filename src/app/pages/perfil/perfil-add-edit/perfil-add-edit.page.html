@@ -8,70 +8,109 @@
   <ion-title style="text-align: center;">Perfil</ion-title>
 </ion-toolbar>
 
-<ion-content class="no-padding" [fullscreen]="true">
+<ion-content>
 
-  <ion-item lines="none">
-    <ion-label position="stacked">Nome Completo</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+  <form [formGroup]="formPerfil">
 
-  <ion-item lines="none">
-    <ion-label position="stacked">Data de Nascimento</ion-label>
-    <ion-input type="number"></ion-input>
-  </ion-item>
+    <ion-item lines="none" class="descer">
+      <ion-label position="stacked">Nome Completo</ion-label>
+      <ion-input formControlName="nome"></ion-input>
+      <ng-container *ngFor="let erro of msg_validacao.nome">
+        <span class="msg-erro" *ngIf="formPerfil.get('nome').hasError(erro.tipo) && (formPerfil.get('nome').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
+    </ion-item>
 
-  <ion-item lines="none">
-    <ion-label position="stacked">Endereço</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
+    <ion-item lines="none" class="descer"> 
+      <ion-label position="stacked">Data de Nascimento</ion-label>
+      <ion-datetime formControlName="dataNasc" display-format="DD/MM/YYYY" cancelText="Cancelar" doneText="Ok" placeholder="Selecione a data"></ion-datetime>
+      <ng-container *ngFor="let erro of msg_validacao.dataNasc">
+        <span class="msg-erro"
+          *ngIf="formPerfil.get('dataNasc').hasError(erro.tipo) && (formPerfil.get('dataNasc').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
+    </ion-item>
 
-  <ion-row>
-    <ion-col>
-      <ion-item lines="none">
-        <ion-label position="stacked">Número</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-    </ion-col>
-    <ion-col>
-      <ion-item lines="none">
-        <ion-label position="stacked">Bairro</ion-label>
-        <ion-input type="number"></ion-input>
-      </ion-item>
-    </ion-col>
-  </ion-row>
+    <ion-item lines="none" class="descer">
+      <ion-label position="stacked">Endereço</ion-label>
+      <ion-input type="text" formControlName="endereco"></ion-input>
+      <ng-container *ngFor="let erro of msg_validacao.endereco">
+        <span class="msg-erro"
+          *ngIf="formPerfil.get('endereco').hasError(erro.tipo) && (formPerfil.get('endereco').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
+    </ion-item>
 
-  <ion-row>
-    <ion-col>
-      <ion-item lines="none">
-        <ion-label position="stacked">Cidade</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-    </ion-col>
-    <ion-col>
-      <ion-item lines="none">
-        <ion-label position="stacked">CEP</ion-label>
-        <ion-input type="number"></ion-input>
-      </ion-item>
-    </ion-col>
-  </ion-row>
+    <ion-item lines="none" class="descer">
+      <ion-label position="stacked">Número</ion-label>
+      <ion-input type="text" formControlName="numero"></ion-input>
+      <ng-container *ngFor="let erro of msg_validacao.numero">
+        <span class="msg-erro"
+          *ngIf="formPerfil.get('numero').hasError(erro.tipo) && (formPerfil.get('numero').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
+    </ion-item>
 
-  <ion-row>
-    <ion-col>
-      <ion-item lines="none">
-        <ion-label position="stacked">Celular</ion-label>
-        <ion-input type="tel"></ion-input>
-      </ion-item>
-    </ion-col>
-    <ion-col>
-      <ion-item lines="none">
-        <ion-label position="stacked">Telefone</ion-label>
-        <ion-input type="tel"></ion-input>
-      </ion-item>
-    </ion-col>
-  </ion-row>
+    <ion-item lines="none" class="descer">
+      <ion-label position="stacked">Bairro</ion-label>
+      <ion-input type="text" formControlName="bairro"></ion-input>
+      <ng-container *ngFor="let erro of msg_validacao.bairro">
+        <span class="msg-erro"
+          *ngIf="formPerfil.get('bairro').hasError(erro.tipo) && (formPerfil.get('bairro').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
+    </ion-item>
 
-  <ion-button class="descer" color="tertiary" expand="block">
-    <ion-icon name="arrow-forward-outline"></ion-icon>
-  </ion-button>
+    <ion-item lines="none" class="descer">
+      <ion-label position="stacked">Cidade</ion-label>
+      <ion-input type="text" formControlName="cidade"></ion-input>
+      <ng-container *ngFor="let erro of msg_validacao.cidade">
+        <span class="msg-erro"
+          *ngIf="formPerfil.get('cidade').hasError(erro.tipo) && (formPerfil.get('cidade').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
+    </ion-item>
 
+    <ion-item lines="none" class="descer">
+      <ion-label position="stacked">CEP</ion-label>
+      <ion-input type="number" formControlName="cep"></ion-input>
+      <ng-container *ngFor="let erro of msg_validacao.cep">
+        <span class="msg-erro" *ngIf="formPerfil.get('cep').hasError(erro.tipo) && (formPerfil.get('cep').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
+    </ion-item>
+
+    <ion-item lines="none" class="descer">
+      <ion-label position="stacked">Celular</ion-label>
+      <ion-input type="text" formControlName="celular" ></ion-input>
+      <ng-container *ngFor="let erro of msg_validacao.celular">
+        <span class="msg-erro"
+          *ngIf="formPerfil.get('celular').hasError(erro.tipo) && (formPerfil.get('celular').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
+    </ion-item>
+
+    <ion-item lines="none" class="descer">
+      <ion-label position="stacked">Telefone</ion-label>
+      <ion-input type="text" formControlName="telefone"></ion-input>
+      <ng-container *ngFor="let erro of msg_validacao.telefone">
+        <span class="msg-erro"
+          *ngIf="formPerfil.get('telefone').hasError(erro.tipo) && (formPerfil.get('telefone').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
+    </ion-item>
+
+    <ion-button class="descer" color="tertiary" expand="block">
+      <ion-icon name="arrow-forward-outline"></ion-icon>
+    </ion-button>
+  </form>
 </ion-content>

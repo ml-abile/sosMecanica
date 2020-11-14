@@ -24,3 +24,19 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+.msg-erro{
+    color:#ff0000;
+    font-size: 11px;
+}
+
+.descer{
+    margin-top: 25px;
+}
+
+ion-input, 
+ion-datetime, 
+ion-select {
+    color: #3171e0 !important;
+}
