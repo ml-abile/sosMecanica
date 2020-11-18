@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-//import { BrMaskerModule } from 'br-mask';
+import { BrMaskerModule } from 'br-mask';
+//import { AppMaskerModule } from 'brmasker';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -16,7 +17,7 @@ import { PerfilAddEditPage } from './perfil-add-edit.page';
     FormsModule, ReactiveFormsModule,
     IonicModule,
     PerfilAddEditPageRoutingModule,
-    //BrMaskerModule
+    BrMaskerModule//AppMaskerModule
   ],
   declarations: [PerfilAddEditPage]
 })

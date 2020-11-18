@@ -16,9 +16,9 @@ export class PerfilAddEditPage implements OnInit {
     numero: [{tipo: 'required', mensagem: 'Campo obrigatório!'}],
     bairro: [{tipo: 'required', mensagem: 'Campo obrigatório!'}, {tipo: 'minlength', mensagem: 'Bairro deve conter no minimo 3 caracteres!'}, {tipo: 'maxlength', mensagem: 'Bairro deve conter no máximo 100 caracteres!'}],
     cidade: [{tipo: 'required', mensagem: 'Campo obrigatório!'}],
-    cep: [{tipo: 'required', mensagem: 'Campo obrigatório!'}],
+    cep: [{tipo: 'required', mensagem: 'Campo obrigatório!'}, {tipo: 'minlength', mensagem: 'CEP deve conter no minimo 8 caracteres!'}, {tipo: 'maxlength', mensagem: 'CEP deve conter no máximo 10 caracteres!'}],
     celular: [{tipo: 'minlength', mensagem: 'Celular deve conter no minimo 10 caracteres!'}, {tipo: 'maxlength', mensagem: 'Celular deve conter no máximo 16 caracteres!'}],
-    telefone: [{tipo: 'minlength', mensagem: 'Celular deve conter no minimo 8 caracteres!'}, {tipo: 'maxlength', mensagem: 'Celular deve conter no máximo 10 caracteres!'}],
+    telefone: [{tipo: 'minlength', mensagem: 'Celular deve conter no minimo 10 caracteres!'}, {tipo: 'maxlength', mensagem: 'Celular deve conter no máximo 16 caracteres!'}],
   }
 
 
@@ -30,9 +30,9 @@ export class PerfilAddEditPage implements OnInit {
       numero: ['', Validators.compose([Validators.required])],
       bairro: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
       cidade: ['', Validators.compose([Validators.required])],
-      cep: ['', Validators.compose([Validators.required])],
+      cep: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(10)])],
       celular: ['', Validators.compose([Validators.minLength(10), Validators.maxLength(16)])],
-      telefone: ['', Validators.compose([Validators.minLength(8), Validators.maxLength(10)])],
+      telefone: ['', Validators.compose([Validators.minLength(10), Validators.maxLength(16)])],
     })
    }
 

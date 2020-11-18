@@ -89,7 +89,7 @@
 
     <ion-item lines="none" class="descer">
       <ion-label position="stacked">Celular</ion-label>
-      <ion-input type="text" formControlName="celular" ></ion-input>
+      <ion-input type="text" formControlName="celular" [brmasker]="{phone: true}"></ion-input>
       <ng-container *ngFor="let erro of msg_validacao.celular">
         <span class="msg-erro"
           *ngIf="formPerfil.get('celular').hasError(erro.tipo) && (formPerfil.get('celular').touched)">
@@ -100,7 +100,7 @@
 
     <ion-item lines="none" class="descer">
       <ion-label position="stacked">Telefone</ion-label>
-      <ion-input type="text" formControlName="telefone"></ion-input>
+      <ion-input type="text" formControlName="telefone" [brmasker]="{phone: true}"></ion-input>
       <ng-container *ngFor="let erro of msg_validacao.telefone">
         <span class="msg-erro"
           *ngIf="formPerfil.get('telefone').hasError(erro.tipo) && (formPerfil.get('telefone').touched)">
