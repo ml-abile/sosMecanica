@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-consulta-agendamentos',
   templateUrl: './consulta-agendamentos.page.html',
@@ -15,16 +16,12 @@ export class ConsultaAgendamentosPage implements OnInit {
       Cor: "Prata",
       Ano: "1998",
       Combustivel: "Gasolina",
-      Placa: "CHU-1234",
-      tamanhos: [
-
-      ],
-      
+      Placa: "CHU-1234"
     },
   ]
 
   constructor() { }
 
-  ngOnInit() {
-  }
+
+  ngOnInit() { }
 }

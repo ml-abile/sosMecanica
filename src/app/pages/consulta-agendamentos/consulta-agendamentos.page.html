@@ -13,7 +13,6 @@
 <ion-content class="ion-padding">
 
   <ion-card *ngFor="let itens of itens">
-
     <ion-card-header>
       <ion-icon size="large" class="botao" name="trash"></ion-icon>
       <ion-icon size="large" class="botao" name="create"></ion-icon>
@@ -27,7 +26,6 @@
   </ion-card>
 
   <ion-card *ngFor="let itens of itens">
-
     <ion-card-header>
       <ion-card-title> {{ itens.Marca }} {{itens.Modelo}} {{itens.Ano}}</ion-card-title>
     </ion-card-header>
@@ -36,11 +34,9 @@
         <ion-card-title style="color: green;">Finalizado</ion-card-title>
       </div>
     </ion-card-content>
-
   </ion-card>
 
   <ion-card *ngFor="let itens of itens">
-
     <ion-card-header>
       <ion-card-title> {{ itens.Marca }} {{itens.Modelo}} {{itens.Ano}}</ion-card-title>
     </ion-card-header>
@@ -51,7 +47,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-fab horizontal="end" vertical="bottom" slot="fixed"routerLink='/agendamento-add-edit'>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed" routerLink='/agendamento-add-edit'>
     <ion-fab-button color="secondary">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
