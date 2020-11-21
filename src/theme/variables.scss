@@ -5,7 +5,13 @@
 :root {
 
 
-  --ion-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", sans-serif;
+  // --ion-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", sans-serif;
+  --ion-font-family: "Roboto" , "Helvetica-Neue", "Roboto-Light", sans-serif !important;
+  // --font-family-base: 'Roboto', sans-serif;
+  // --font-family-md-base: 'Roboto', sans-serif;;
+  // --font-family-ios-base: 'Roboto', sans-serif;;
+  // --font-family-wp-base: 'Roboto', sans-serif;;
+  // --font-size-base:  20px;
   /** primary **/
   --ion-color-primary: #c4f5ee;
   --ion-color-primary-rgb: 56, 128, 255;

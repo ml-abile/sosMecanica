@@ -22,6 +22,6 @@ export class VeiculosService {
   }
 
   public delete(key: string){
-    return this.afs.doc(`veiculos/%{key}`).delete();
+    return this.afs.doc(`veiculos/${key}`).delete();
   }
 }

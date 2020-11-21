@@ -1,5 +1,10 @@
+import { Veiculo } from './../../../models/veiculo';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Agendamento } from 'src/app/models/agendamento';
+import { AgendamentosService } from 'src/app/services/agendamentos.service';
+import { Router } from '@angular/router';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-agendamento-add-edit',
@@ -17,7 +22,10 @@ export class AgendamentoAddEditPage implements OnInit {
     obs: [{tipo: 'required', mensagem: 'Campo obrigatório!'}, {tipo: 'minlength', mensagem: 'Observação deve conter no minimo 10 caracteres!'}, {tipo: 'maxlength', mensagem: 'Oberservação deve conter no máximo 255 caracteres!'}],
   }
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+    private toastService: ToastService,
+    private router: Router,
+    private agendamentoService: AgendamentosService) {
     this.formAgend = formBuilder.group({
       diaAgend: ['', Validators.compose([Validators.required])],
       horaAgend: ['', Validators.compose([Validators.required])],
@@ -27,6 +35,25 @@ export class AgendamentoAddEditPage implements OnInit {
     })
    }
 
+   public cadAgend() {
+    if (this.formAgend.valid) {
+
+      const agend = new Agendamento();
+      agend.dia = this.formAgend.value.diaAgend;
+      agend.horario = this.formAgend.value.horaAgend;
+      agend.veiculo = this.formAgend.value.veiculo;
+      agend.opcaoLevatras = this.formAgend.value.opcaoLevaTras;
+      agend.obs = this.formAgend.value.obs;
+ 
+      this.agendamentoService.create(agend).then(dados => {
+        console.log(dados);
+        this.toastService.presentToast('Agendamento registrado e em análise!', 5000, 'middle', 'secondary');
+        this.router.navigateByUrl('/consulta-agendamentos');
+      }).catch(erro => {
+        console.error(erro);
+      });
+   }
+  }
   ngOnInit() {
   }
 

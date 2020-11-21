@@ -1,7 +1,9 @@
+import { ToastService } from './../../services/toast.service';
 import { VeiculosService } from './../../services/veiculos.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Veiculo } from 'src/app/models/veiculo';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastrar-veiculos',
@@ -21,7 +23,10 @@ export class CadastrarVeiculosPage implements OnInit {
     combust: [{ tipo: 'minlength', mensagem: 'Combustível deve conter no minimo 3 caracteres!' }, { tipo: 'maxlength', mensagem: 'Combustível deve conter no máximo 15 caracteres!' }],
   }
 
-  constructor(private formBuilder: FormBuilder, private veiculoService: VeiculosService) {
+  constructor(private formBuilder: FormBuilder,
+    private veiculoService: VeiculosService,
+    private toastService: ToastService,
+    private router: Router) {
     this.formVeiculos = formBuilder.group({
       marca: ['', Validators.compose([Validators.required])],
       modelo: ['', Validators.compose([Validators.required])],
@@ -37,15 +42,24 @@ export class CadastrarVeiculosPage implements OnInit {
   }
 
   public cadVeiculo() {
-    const veiculo = new Veiculo();
-    // veiculo.marca = this.marca;
-    // veiculo.modelo = this.modelo;
-    // veiculo.ano = this.ano;
-    // veiculo.km = ;
-    // veiculo.cor = ;
-    // veiculo.placa = ;
-    // veiculo.combust = ;
+    if (this.formVeiculos.valid) {
 
+      const veiculo = new Veiculo();
+      veiculo.marca = this.formVeiculos.value.marca;
+      veiculo.modelo = this.formVeiculos.value.modelo;
+      veiculo.ano = this.formVeiculos.value.ano;
+      veiculo.cor = this.formVeiculos.value.cor;
+      veiculo.placa = this.formVeiculos.value.placa;
+      veiculo.combust = this.formVeiculos.value.combust;
+
+      this.veiculoService.create(veiculo).then(dados => {
+        console.log(dados);
+        this.toastService.presentToast('Veículo cadastrado!', 3000, 'middle', 'secondary');
+        this.router.navigateByUrl('/consulta-veiculos');
+      }).catch(erro => {
+        console.error(erro);
+      });
+    }
   }
 
 }

@@ -29,28 +29,33 @@
     <ion-item lines="full">
       <ion-label>
         <div>
-          <p class="ion-text-right line">
+          <p>
             {{veiculos.marca}} {{veiculos.modelo}} {{veiculos.ano}}
           </p>
           <p>
-            {{veiculos.placa}} 
+            {{veiculos.placa}}
           </p>
         </div>
       </ion-label>
     </ion-item>
-  
+
     <ion-item-options side="end">
       <ion-item-option color="danger" (click)="deletar(veiculos.$key)">
         <ion-icon slot="icon-only" name="trash"></ion-icon>
       </ion-item-option>
     </ion-item-options>
-  
-  
-    </ion-item-sliding>
-    <ion-fab horizontal="end" vertical="bottom" slot="fixed" routerLink='/cadastrar-veiculos'>
-      <ion-fab-button color="secondary">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+    <ion-item-options side="start">
+      <ion-item-option color="secondary" (click)="edtVeiculo(veiculos.$key)">
+        <ion-icon slot="icon-only" name="create"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+
+
+  </ion-item-sliding>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed" routerLink='/cadastrar-veiculos'>
+    <ion-fab-button color="secondary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>

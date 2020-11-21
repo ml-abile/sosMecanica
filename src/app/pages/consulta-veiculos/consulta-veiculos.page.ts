@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Veiculo } from 'src/app/models/veiculo';
+import { ToastService } from 'src/app/services/toast.service';
 import { VeiculosService } from 'src/app/services/veiculos.service';
 
 @Component({
@@ -24,7 +25,7 @@ export class ConsultaVeiculosPage implements OnInit {
 
   public listaVeiculos: Veiculo[] = [];
 
-  constructor(private veiculoService: VeiculosService) { }
+  constructor(private veiculoService: VeiculosService,  private toastService: ToastService) { }
 
 
   public buscarVeiculos() {
@@ -51,10 +52,23 @@ export class ConsultaVeiculosPage implements OnInit {
   }
 
   public deletar(key: string) {
-    this.veiculoService.delete(key);
+    this.veiculoService.delete(key)
+    .then(() => {
+      this.toastService.presentToast("Veículo removido com sucesso!", 3000, 'middle', 'secondary');
+    })
+    .catch((e) => {
+      this.toastService.presentToast("Erro ao remover o veículo!", 3000, 'middle', 'secondary');
+    })
     this.buscarVeiculos();
   }
-  ngOnInit() {
+
+  public edtVeiculo(key: string, veiculo:Veiculo) {
+    this.veiculoService.update(key, veiculo)
+    .catch((e) => {
+      this.toastService.presentToast("Erro ao editar o veículo!", 3000, 'middle', 'secondary');
+    })
   }
+
+  ngOnInit() {  }
 
 }
