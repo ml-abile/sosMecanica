@@ -45,14 +45,13 @@
       </ion-item-option>
     </ion-item-options>
     <ion-item-options side="start">
-      <ion-item-option color="secondary" (click)="edtVeiculo(veiculos.$key)">
+      <ion-item-option color="secondary" routerLink='/cadastrar-veiculos/{{veiculos.$key}}'>
         <ion-icon slot="icon-only" name="create"></ion-icon>
       </ion-item-option>
     </ion-item-options>
-
-
   </ion-item-sliding>
-  <ion-fab horizontal="end" vertical="bottom" slot="fixed" routerLink='/cadastrar-veiculos'>
+  
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed" routerLink='/cadastrar-veiculos/-1'>
     <ion-fab-button color="secondary">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

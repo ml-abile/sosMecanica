@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content class="padding">
-
+<ng-container *ngIf="formVeiculos" >
   <form [formGroup]="formVeiculos">
 
     <ion-item class="descer" lines="none">
@@ -85,5 +85,6 @@
       Gravar
     </ion-button>
   </form>
+</ng-container>
 
 </ion-content>

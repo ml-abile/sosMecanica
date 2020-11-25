@@ -21,7 +21,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/perfil/perfil-add-edit/perfil-add-edit.module').then( m => m.PerfilAddEditPageModule)
   },
   {
-    path: 'cadastrar-veiculos',
+    path: 'cadastrar-veiculos/:id',
     loadChildren: () => import('./pages/cadastrar-veiculos/cadastrar-veiculos.module').then( m => m.CadastrarVeiculosPageModule)
   },
   //{

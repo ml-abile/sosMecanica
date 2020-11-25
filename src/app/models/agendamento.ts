@@ -1,8 +1,8 @@
 export class Agendamento {
     $key: string;
-    dia: string;
-    horario: string;
+    dia: Date;
+    horario: Date;
     veiculo: any;
-    opcaoLevatras: boolean;
+    //opcaoLevatras: boolean;
     obs: string
 }

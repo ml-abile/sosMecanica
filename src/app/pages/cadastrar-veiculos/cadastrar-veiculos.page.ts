@@ -3,7 +3,7 @@ import { VeiculosService } from './../../services/veiculos.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Veiculo } from 'src/app/models/veiculo';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastrar-veiculos',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./cadastrar-veiculos.page.scss'],
 })
 export class CadastrarVeiculosPage implements OnInit {
-
+  public veiculo: Veiculo;
   public formVeiculos: FormGroup;
   public msg_validacao = {
     marca: [{ tipo: 'required', mensagem: 'Campo obrigatório!' }],
@@ -26,19 +26,38 @@ export class CadastrarVeiculosPage implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private veiculoService: VeiculosService,
     private toastService: ToastService,
-    private router: Router) {
-    this.formVeiculos = formBuilder.group({
-      marca: ['', Validators.compose([Validators.required])],
-      modelo: ['', Validators.compose([Validators.required])],
-      ano: ['', Validators.compose([Validators.required])],
-      //km: ['', Validators.compose([Validators.minLength(3), Validators.maxLength(20)])],
-      cor: ['', Validators.compose([Validators.minLength(3), Validators.maxLength(40)])],
-      placa: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(11)])],
-      combust: ['', Validators.compose([Validators.minLength(3), Validators.maxLength(15)])]
-    });
+    private router: Router,
+    private route: ActivatedRoute) {
   }
 
-  ngOnInit() {
+  async ionViewWillEnter() {
+    const id: string = this.route.snapshot.paramMap.get('id');
+
+    if (id !== '-1') {
+      this.veiculo = await this.veiculoService.getById(id);
+
+      this.formVeiculos = this.formBuilder.group({
+        $key: [this.veiculo.$key],
+        marca: [this.veiculo.marca, Validators.compose([Validators.required])],
+        modelo: [this.veiculo.modelo, Validators.compose([Validators.required])],
+        ano: [this.veiculo.ano, Validators.compose([Validators.required])],
+        //km: ['', Validators.compose([Validators.minLength(3), Validators.maxLength(20)])],
+        cor: [this.veiculo.cor, Validators.compose([Validators.minLength(3), Validators.maxLength(40)])],
+        placa: [this.veiculo.placa, Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(11)])],
+        combust: [this.veiculo.combust, Validators.compose([Validators.minLength(3), Validators.maxLength(15)])]
+      });
+    }
+    else {
+      this.formVeiculos = this.formBuilder.group({
+        marca: ['', Validators.compose([Validators.required])],
+        modelo: ['', Validators.compose([Validators.required])],
+        ano: ['', Validators.compose([Validators.required])],
+        //km: ['', Validators.compose([Validators.minLength(3), Validators.maxLength(20)])],
+        cor: ['', Validators.compose([Validators.minLength(3), Validators.maxLength(40)])],
+        placa: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(11)])],
+        combust: ['', Validators.compose([Validators.minLength(3), Validators.maxLength(15)])]
+      });
+    }
   }
 
   public cadVeiculo() {
@@ -51,15 +70,27 @@ export class CadastrarVeiculosPage implements OnInit {
       veiculo.cor = this.formVeiculos.value.cor;
       veiculo.placa = this.formVeiculos.value.placa;
       veiculo.combust = this.formVeiculos.value.combust;
+      console.log(this.formVeiculos.value.$key);
 
-      this.veiculoService.create(veiculo).then(dados => {
-        console.log(dados);
-        this.toastService.presentToast('Veículo cadastrado!', 3000, 'middle', 'secondary');
-        this.router.navigateByUrl('/consulta-veiculos');
-      }).catch(erro => {
-        console.error(erro);
-      });
+      if (this.formVeiculos.value.$key == undefined) {
+
+        this.veiculoService.create(veiculo).then(dados => {
+          console.log(dados);
+          this.toastService.presentToast('Veículo cadastrado!', 3000, 'middle', 'secondary');
+          this.router.navigateByUrl('/consulta-veiculos');
+        }).catch(erro => {
+          console.error(erro);
+        });
+      } else {
+        this.veiculoService.update(this.veiculo.$key, veiculo).then(dados => {
+          console.log(dados);
+          this.toastService.presentToast('Veículo atualizado!', 3000, 'middle', 'secondary');
+          this.router.navigateByUrl('/consulta-veiculos');
+        }).catch(erro => {
+          console.error(erro);
+        });
+      }
     }
   }
-
+  ngOnInit() {  }
 }
