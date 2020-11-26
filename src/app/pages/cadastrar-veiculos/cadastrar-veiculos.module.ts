@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {​​​​​ BrMaskerModule }​​​​​ from'br-mask';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,7 +14,8 @@ import { CadastrarVeiculosPage } from './cadastrar-veiculos.page';
     CommonModule,
     FormsModule, ReactiveFormsModule,
     IonicModule,
-    CadastrarVeiculosPageRoutingModule
+    CadastrarVeiculosPageRoutingModule,
+    BrMaskerModule
   ],
   declarations: [CadastrarVeiculosPage]
 })

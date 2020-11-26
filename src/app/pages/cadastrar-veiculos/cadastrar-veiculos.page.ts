@@ -35,6 +35,8 @@ export class CadastrarVeiculosPage implements OnInit {
 
     if (id !== '-1') {
       this.veiculo = await this.veiculoService.getById(id);
+      console.log(this.veiculo);
+      this.veiculo.$key = id;
 
       this.formVeiculos = this.formBuilder.group({
         $key: [this.veiculo.$key],

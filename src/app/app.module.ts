@@ -1,3 +1,4 @@
+import { DadosService } from './services/dados.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -29,6 +30,7 @@ import { AngularFireDatabaseModule } from "@angular/fire/database";
   providers: [
     StatusBar,
     SplashScreen,
+    DadosService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

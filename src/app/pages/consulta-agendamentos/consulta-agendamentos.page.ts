@@ -2,6 +2,7 @@ import { AgendamentosService } from './../../services/agendamentos.service';
 import { Component, OnInit } from '@angular/core';
 import { Agendamento } from 'src/app/models/agendamento';
 import { ToastService } from 'src/app/services/toast.service';
+import { Veiculo } from 'src/app/models/veiculo';
 
 
 @Component({
@@ -38,7 +39,9 @@ export class ConsultaAgendamentosPage implements OnInit {
           horario: registro.payload.doc.data()['horario'],
           veiculo: registro.payload.doc.data()['veiculo'],
           obs: registro.payload.doc.data()['obs'],
+          status: registro.payload.doc.data()['status'],
         } as Agendamento;
+        
       });
     });
   }

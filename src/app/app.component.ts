@@ -1,3 +1,5 @@
+import { UsuariosService } from './services/usuarios.service';
+import { DadosService } from './services/dados.service';
 import { AuthService } from './services/auth.service';
 import { Component } from '@angular/core';
 
@@ -15,7 +17,9 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private authService : AuthService
+    private authService : AuthService,
+    private dadosService : DadosService,
+    private usuariosService: UsuariosService
   ) {
     this.initializeApp();
   }
@@ -24,6 +28,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      //this.buscarDadosUsuarios();
     });
   }
 
@@ -33,5 +38,10 @@ export class AppComponent {
     } catch (error){
       console.error(error);
     }
+  }
+
+  public async buscarDadosUsuarios(){
+    const user = await this.usuariosService.getById(this.dadosService.getDados('user')['user']['uid']);
+    console.log(user);
   }
 }

@@ -60,7 +60,7 @@
 
     <ion-item class="descer" lines="none">
       <ion-label position="stacked">Placa</ion-label>
-      <ion-input formControlName="placa" type="text"></ion-input>
+      <ion-input formControlName="placa" type="text" [brmasker]="{mask: 'AAA-0A00'}"></ion-input>
       <ng-container *ngFor="let erro of msg_validacao.placa">
         <span class="msg-erro"
           *ngIf="formVeiculos.get('placa').hasError(erro.tipo) && (formVeiculos.get('placa').dirty || formVeiculos.get('placa').touched)">

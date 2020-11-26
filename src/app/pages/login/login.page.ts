@@ -1,3 +1,4 @@
+import { UsuariosService } from './../../services/usuarios.service';
 import { Router } from '@angular/router';
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 import { AuthService } from './../../services/auth.service';
@@ -23,7 +24,8 @@ export class LoginPage implements OnInit {
     private authService: AuthService,
     public afs: AngularFirestore,
     public alertCtrl: AlertController,
-    public router: Router,) { }
+    public router: Router,
+    private usuariosService: UsuariosService) { }
 
   ngOnInit() { }
 
@@ -40,13 +42,13 @@ export class LoginPage implements OnInit {
     await this.presentLoading();
 
     try {
-     // await this.authService.login(this.userLogin);
-     var objeto = await this.authService.login(this.userLogin).then(
-       resultado => console.log(resultado)
-     );
-     console.log(objeto);
+      // await this.authService.login(this.userLogin);
+      var objeto = await this.authService.login(this.userLogin).then(
+        resultado => console.log(resultado)
+      );
+      console.log(objeto);
     } catch (error) {
-     
+
       let message: string;
 
       switch (error.code) {
@@ -59,10 +61,10 @@ export class LoginPage implements OnInit {
           break;
       }
       this.presentToast(message);
-    }finally {
+    } finally {
       this.loading.dismiss();
+    }
   }
-}
 
 
   async register() {
@@ -74,13 +76,13 @@ export class LoginPage implements OnInit {
       const newUserObject = Object.assign({}, this.userRegister);
 
       delete newUserObject.senha;
-      await this.afs.collection('Usuarios').doc(newUser.user.uid).set(newUserObject).then(
+      await this.usuariosService.create(newUser.user.uid, newUserObject).then(
         async () => {
           const alert = await this.alertCtrl.create({
             message: 'Cadastro realizado com sucesso !!',
             buttons: [{
               text: 'ok', handler: () => {
-                 this.router.navigateByUrl('/login');
+                this.router.navigateByUrl('/login');
               },
             },],
           });
@@ -102,9 +104,9 @@ export class LoginPage implements OnInit {
           message = "Preencha todos os campos!";
           break;
 
-          case 'auth/weak-password':
-            message = "Digite uma senha com mais de 6 caracteres!";
-            break;
+        case 'auth/weak-password':
+          message = "Digite uma senha com mais de 6 caracteres!";
+          break;
       }
       this.presentToast(message);
     } finally {

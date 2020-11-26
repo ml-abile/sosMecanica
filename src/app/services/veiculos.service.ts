@@ -34,7 +34,7 @@ export class VeiculosService {
   }
 
   public update(key: string, veiculo: Veiculo) {
-    return this.afs.doc(`veiculos/${key}`).update(veiculo);
+    return this.afs.doc(`veiculos/${key}`).update({ ...veiculo });
   }
 
   public delete(key: string) {

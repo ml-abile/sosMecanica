@@ -1,6 +1,7 @@
+import { DadosService } from './../services/dados.service';
 import { AuthService } from './../services/auth.service';
 import { Injectable } from '@angular/core';
-import { CanActivate, Router} from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,17 +9,22 @@ import { CanActivate, Router} from '@angular/router';
 export class LoginGuard implements CanActivate {
   constructor(
     private authService: AuthService,
-    private router: Router ) { }
+    private router: Router,
+    private dadosService: DadosService) { }
 
-  canActivate(): Promise<boolean>{
+  canActivate(): Promise<boolean> {
     return new Promise(resolve => {
       this.authService.getAuth().onAuthStateChanged(user => {
-        if (user) this.router.navigate(['/home']);
+
+        if (user) {
+          this.dadosService.setDados('user', user)
+          this.router.navigate(['/home']);
+        }
 
         resolve(!user ? true : false);
       })
     })
-   
+
   }
 
 }

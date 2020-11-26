@@ -4,5 +4,6 @@ export class Agendamento {
     horario: Date;
     veiculo: any;
     //opcaoLevatras: boolean;
-    obs: string
+    obs: string;
+    status: string
 }

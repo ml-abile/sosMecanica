@@ -53,7 +53,7 @@
       <ion-label>
         <div>
           <p>
-            {{agend.dia}} {{agend.horario}}
+            {{agend.dia | date: 'dd/MM/yyyy'}} {{agend.horario | date: 'HH:mm:ss'}}
           </p>
           <p>
             {{agend.veiculo}}
@@ -63,6 +63,11 @@
           </p>
         </div>
       </ion-label>
+      <ion-note *ngIf="agend.status" slot="end">
+        <ion-badge  *ngIf="agend.status =='A'" color="success">Aberto</ion-badge>
+        <ion-badge  *ngIf="agend.status =='C'" color="secondary">Concluído</ion-badge>
+        <ion-badge  *ngIf="agend.status =='D'" color="danger">Cancelado</ion-badge>
+      </ion-note>
     </ion-item>
 
     <ion-item-options side="end">

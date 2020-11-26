@@ -49,6 +49,7 @@ export class AgendamentoAddEditPage implements OnInit {
       agend.veiculo = this.formAgend.value.veiculo;
       //agend.opcaoLevatras = this.formAgend.value.opcaoLevatras;
       agend.obs = this.formAgend.value.obs;
+      agend.status = 'A';
 
       this.agendamentoService.create(agend).then(dados => {
         console.log(dados);
