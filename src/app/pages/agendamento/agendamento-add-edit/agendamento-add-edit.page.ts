@@ -2,7 +2,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Agendamento } from 'src/app/models/agendamento';
 import { AgendamentosService } from 'src/app/services/agendamentos.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/services/toast.service';
 import { Veiculo } from 'src/app/models/veiculo';
 import { VeiculosService } from 'src/app/services/veiculos.service';
@@ -14,7 +14,7 @@ import { VeiculosService } from 'src/app/services/veiculos.service';
 })
 export class AgendamentoAddEditPage implements OnInit {
   public listaVeiculos: Veiculo[] = [];
-
+  public agendamento: Agendamento;
   public formAgend: FormGroup;
   public msg_validacao = {
     dia: [{ tipo: 'required', mensagem: 'Campo obrigatório!' }],
@@ -27,17 +27,46 @@ export class AgendamentoAddEditPage implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private toastService: ToastService,
     private router: Router,
+    private route: ActivatedRoute,
     private agendamentoService: AgendamentosService,
     private veiculoService: VeiculosService) {
     this.buscarVeiculos();
 
-    this.formAgend = formBuilder.group({
-      dia: ['', Validators.compose([Validators.required])],
-      horario: ['', Validators.compose([Validators.required])],
-      veiculo: ['', Validators.compose([Validators.required])],
-      //opcaoLevatras: ['', Validators.compose([Validators.required])],
-      obs: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(255)])]
-    })
+    // this.formAgend = formBuilder.group({
+    //   dia: ['', Validators.compose([Validators.required])],
+    //   horario: ['', Validators.compose([Validators.required])],
+    //   veiculo: ['', Validators.compose([Validators.required])],
+    //   //opcaoLevatras: ['', Validators.compose([Validators.required])],
+    //   obs: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(255)])]
+    // })
+  }
+
+  async ionViewWillEnter() {
+    const id: string = this.route.snapshot.paramMap.get('id');
+
+    if (id !== '-1') {
+      this.agendamento = await this.agendamentoService.getById(id);
+      // console.log(this.agendamento);
+      this.agendamento.$key = id;
+
+      this.formAgend = this.formBuilder.group({
+        $key: [this.agendamento.$key],
+        dia: [this.agendamento.dia, Validators.compose([Validators.required])],
+        horario: [this.agendamento.horario, Validators.compose([Validators.required])],
+        veiculo: [this.agendamento.veiculo, Validators.compose([Validators.required])],
+        //opcaoLevatras: ['', Validators.compose([Validators.required])],
+        obs: [this.agendamento.obs, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(255)])]
+      });
+    }
+    else {
+      this.formAgend = this.formBuilder.group({
+        dia: ['', Validators.compose([Validators.required])],
+        horario: ['', Validators.compose([Validators.required])],
+        veiculo: ['', Validators.compose([Validators.required])],
+        //opcaoLevatras: ['', Validators.compose([Validators.required])],
+        obs: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(255)])]
+      });
+    }
   }
 
   public cadAgend() {
@@ -51,13 +80,24 @@ export class AgendamentoAddEditPage implements OnInit {
       agend.obs = this.formAgend.value.obs;
       agend.status = 'A';
 
-      this.agendamentoService.create(agend).then(dados => {
-        console.log(dados);
-        this.toastService.presentToast('Agendamento registrado e em análise!', 5000, 'middle', 'secondary');
-        this.router.navigateByUrl('/consulta-agendamentos');
-      }).catch(erro => {
-        console.error(erro);
-      });
+      if (this.formAgend.value.$key == undefined) {
+
+        this.agendamentoService.create(agend).then(dados => {
+          // console.log(dados);
+          this.toastService.presentToast('Agendamento registrado e em análise!', 5000, 'middle', 'secondary');
+          this.router.navigateByUrl('/consulta-agendamentos');
+        }).catch(erro => {
+          console.error(erro);
+        });
+      } else {
+        this.agendamentoService.update(this.agendamento.$key, agend).then(dados => {
+          // console.log(dados);
+          this.toastService.presentToast('Agendamento atualizado!', 5000, 'middle', 'secondary');
+          this.router.navigateByUrl('/consulta-agendamentos');
+        }).catch(erro => {
+          console.error(erro);
+        });
+      }
     }
   }
 
@@ -81,9 +121,6 @@ export class AgendamentoAddEditPage implements OnInit {
     });
   }
 
-
-
-  ngOnInit() {
-  }
+  ngOnInit() {  }
 
 }

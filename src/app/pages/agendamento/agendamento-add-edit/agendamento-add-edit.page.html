@@ -12,11 +12,12 @@
 
 
 <ion-content [fullscreen]="true">
+  <ng-container *ngIf="formAgend">
   <form [formGroup]="formAgend">
 
     <ion-item class="descer" lines="none">
       <ion-label position="stacked">Quando ?</ion-label>
-      <ion-datetime display-format="DD/MM/YYYY" cancelText="Cancelar" doneText="Ok" placeholder="Selecione a data"
+      <ion-datetime display-format="DD/MM/YYYY" min="2020" max="2021" cancelText="Cancelar" doneText="Ok" placeholder="Selecione a data"
         formControlName="dia">
       </ion-datetime>
       <ng-container *ngFor="let erro of msg_validacao.dia">
@@ -26,10 +27,10 @@
         </span>
       </ng-container>
     </ion-item>
-
+    <!-- display-format="hh:mm" picker-format="hh:mm" -->
     <ion-item lines="none">
       <ion-label position="stacked" class="descer">Qual Horário ?</ion-label>
-      <ion-datetime display-format="hh:mm" picker-format="hh:mm" cancelText="Cancelar" doneText="Ok"
+      <ion-datetime display-format="h:mm A" picker-format="h:mm A" cancelText="Cancelar" doneText="Ok"
         placeholder="Selecione o horário" formControlName="horario">
       </ion-datetime>
       <ng-container *ngFor="let erro of msg_validacao.horario">
@@ -93,4 +94,5 @@
     <ion-button class="descer" color="tertiary" expand="block" [disabled]="!formAgend.valid" (click)="cadAgend()">Finalizar Agendamento</ion-button>
 
   </form>
+</ng-container>
 </ion-content>

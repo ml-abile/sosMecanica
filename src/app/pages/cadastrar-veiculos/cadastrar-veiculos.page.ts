@@ -27,8 +27,7 @@ export class CadastrarVeiculosPage implements OnInit {
     private veiculoService: VeiculosService,
     private toastService: ToastService,
     private router: Router,
-    private route: ActivatedRoute) {
-  }
+    private route: ActivatedRoute) {  }
 
   async ionViewWillEnter() {
     const id: string = this.route.snapshot.paramMap.get('id');
@@ -72,7 +71,7 @@ export class CadastrarVeiculosPage implements OnInit {
       veiculo.cor = this.formVeiculos.value.cor;
       veiculo.placa = this.formVeiculos.value.placa;
       veiculo.combust = this.formVeiculos.value.combust;
-      console.log(this.formVeiculos.value.$key);
+      // console.log(this.formVeiculos.value.$key);
 
       if (this.formVeiculos.value.$key == undefined) {
 
@@ -94,5 +93,5 @@ export class CadastrarVeiculosPage implements OnInit {
       }
     }
   }
-  ngOnInit() {  }
+  ngOnInit() { }
 }

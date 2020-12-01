@@ -29,7 +29,7 @@ const routes: Routes = [
   //  loadChildren: () => import('./agendamento/agendamento-add-edit/agendamento-add-edit.module').then( m => m.AgendamentoAddEditPageModule)
   //},
   {
-    path: 'agendamento-add-edit',
+    path: 'agendamento-add-edit/:id',
     loadChildren: () => import('./pages/agendamento/agendamento-add-edit/agendamento-add-edit.module').then( m => m.AgendamentoAddEditPageModule)
   },
   {

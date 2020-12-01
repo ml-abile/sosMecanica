@@ -12,7 +12,7 @@
 
   <form [formGroup]="formPerfil">
 
-    <ion-item lines="none" class="descer">
+    <ion-item lines="none">
       <ion-label position="stacked">Nome Completo</ion-label>
       <ion-input formControlName="nome"></ion-input>
       <ng-container *ngFor="let erro of msg_validacao.nome">
@@ -22,7 +22,7 @@
       </ng-container>
     </ion-item>
 
-    <ion-item lines="none" class="descer"> 
+    <ion-item lines="none"> 
       <ion-label position="stacked">Data de Nascimento</ion-label>
       <ion-datetime formControlName="dataNasc" display-format="DD/MM/YYYY" cancelText="Cancelar" doneText="Ok" placeholder="Selecione a data"></ion-datetime>
       <ng-container *ngFor="let erro of msg_validacao.dataNasc">
@@ -33,7 +33,7 @@
       </ng-container>
     </ion-item>
 
-    <ion-item lines="none" class="descer">
+    <ion-item lines="none">
       <ion-label position="stacked">Endereço</ion-label>
       <ion-input type="text" formControlName="endereco"></ion-input>
       <ng-container *ngFor="let erro of msg_validacao.endereco">
@@ -44,7 +44,7 @@
       </ng-container>
     </ion-item>
 
-    <ion-item lines="none" class="descer">
+    <ion-item lines="none">
       <ion-label position="stacked">Número</ion-label>
       <ion-input type="text" formControlName="numero"></ion-input>
       <ng-container *ngFor="let erro of msg_validacao.numero">
@@ -55,7 +55,7 @@
       </ng-container>
     </ion-item>
 
-    <ion-item lines="none" class="descer">
+    <ion-item lines="none">
       <ion-label position="stacked">Bairro</ion-label>
       <ion-input type="text" formControlName="bairro"></ion-input>
       <ng-container *ngFor="let erro of msg_validacao.bairro">
@@ -66,7 +66,7 @@
       </ng-container>
     </ion-item>
 
-    <ion-item lines="none" class="descer">
+    <ion-item lines="none">
       <ion-label position="stacked">Cidade</ion-label>
       <ion-input type="text" formControlName="cidade"></ion-input>
       <ng-container *ngFor="let erro of msg_validacao.cidade">
@@ -77,7 +77,7 @@
       </ng-container>
     </ion-item>
 
-    <ion-item lines="none" class="descer">
+    <ion-item lines="none">
       <ion-label position="stacked">CEP</ion-label>
       <ion-input type="number" formControlName="cep"></ion-input>
       <ng-container *ngFor="let erro of msg_validacao.cep">
@@ -87,7 +87,7 @@
       </ng-container>
     </ion-item>
 
-    <ion-item lines="none" class="descer">
+    <ion-item lines="none">
       <ion-label position="stacked">Celular</ion-label>
       <ion-input type="text" formControlName="celular" [brmasker]="{phone: true}"></ion-input>
       <ng-container *ngFor="let erro of msg_validacao.celular">
@@ -98,7 +98,7 @@
       </ng-container>
     </ion-item>
 
-    <ion-item lines="none" class="descer">
+    <ion-item lines="none">
       <ion-label position="stacked">Telefone</ion-label>
       <ion-input type="text" formControlName="telefone" [brmasker]="{phone: true}"></ion-input>
       <ng-container *ngFor="let erro of msg_validacao.telefone">

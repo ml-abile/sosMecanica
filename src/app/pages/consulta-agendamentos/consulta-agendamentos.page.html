@@ -53,7 +53,7 @@
       <ion-label>
         <div>
           <p>
-            {{agend.dia | date: 'dd/MM/yyyy'}} {{agend.horario | date: 'HH:mm:ss'}}
+            {{agend.dia | date: 'dd MMM yyyy'}} às  {{agend.horario | date: 'HH:mm'}}
           </p>
           <p>
             {{agend.veiculo}}
@@ -64,8 +64,8 @@
         </div>
       </ion-label>
       <ion-note *ngIf="agend.status" slot="end">
-        <ion-badge  *ngIf="agend.status =='A'" color="success">Aberto</ion-badge>
-        <ion-badge  *ngIf="agend.status =='C'" color="secondary">Concluído</ion-badge>
+        <ion-badge  *ngIf="agend.status =='A'" color="secondary">Aberto</ion-badge>
+        <ion-badge  *ngIf="agend.status =='C'" color="success">Concluído</ion-badge>
         <ion-badge  *ngIf="agend.status =='D'" color="danger">Cancelado</ion-badge>
       </ion-note>
     </ion-item>
@@ -76,14 +76,14 @@
       </ion-item-option>
     </ion-item-options>
     <ion-item-options side="start">
-      <ion-item-option color="secondary" (click)="edtAgend(agend.$key)">
+      <ion-item-option color="secondary"  routerLink='/agendamento-add-edit/{{agend.$key}}'>
         <ion-icon slot="icon-only" name="create"></ion-icon>
       </ion-item-option>
     </ion-item-options>
   </ion-item-sliding>
 
 
-  <ion-fab horizontal="end" vertical="bottom" slot="fixed" routerLink='/agendamento-add-edit'>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed" routerLink='/agendamento-add-edit/-1'>
     <ion-fab-button color="secondary">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
