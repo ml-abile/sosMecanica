@@ -1,6 +1,9 @@
 export interface Users {
-    email ?: string;
-    senha ?: string;
-    nome ?: string;
-    displayName ?: string;
+    uid?: string;
+    email?: string;
+    senha?: string;
+    nome?: string;
+    displayName?: string;
+    phoneNumber?: string;
+    photoURL?: string;
 }

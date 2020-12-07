@@ -17,19 +17,13 @@ export class LoginGuard implements CanActivate {
       this.authService.getAuth().onAuthStateChanged(user => {
 
         if (user) {
-          this.dadosService.setDados('user', {
-            uid: user.uid,
-            email: user.email,
-            displayName: user.displayName,
-            phoneNumber: user.phoneNumber,
-            photoURL: user.photoURL,
-          });
+          this.dadosService.setDados('user', user)
           this.router.navigate(['/home']);
         }
 
         resolve(!user ? true : false);
-      });
-    });
+      })
+    })
 
   }
 

@@ -1,5 +1,9 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Users } from 'src/app/interfaces/users';
+import { UsuariosService } from 'src/app/services/usuarios.service';
+import { DadosService } from 'src/app/services/dados.service';
+
 
 @Component({
   selector: 'app-perfil-add-edit',
@@ -7,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./perfil-add-edit.page.scss'],
 })
 export class PerfilAddEditPage implements OnInit {
-
+  public userLogado: Users;
   public formPerfil: FormGroup;
   public msg_validacao = {
     nome: [{tipo: 'required', mensagem: 'Campo obrigatório!'},{tipo: 'minlength', mensagem: 'Nome deve conter no minimo 3 caracteres!'}],
@@ -22,7 +26,7 @@ export class PerfilAddEditPage implements OnInit {
   }
 
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private usuariosService: UsuariosService, private dadosService: DadosService) {
     this.formPerfil = formBuilder.group({
       nome: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       dataNasc: ['', Validators.compose([Validators.required])],
@@ -39,4 +43,13 @@ export class PerfilAddEditPage implements OnInit {
   ngOnInit() {
   }
 
+  public async buscarDadosUsuarios() {
+    const user = await this.dadosService.getDados('user');
+    if (user) {
+      this.usuariosService.getById(user.uid).then(dadosUser => {
+        this.userLogado = dadosUser;
+      });
+      console.log(this.userLogado);
+    }
+  }
 }

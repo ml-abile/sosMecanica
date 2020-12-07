@@ -1,10 +1,9 @@
-import { Users } from './interfaces/users';
 import { UsuariosService } from './services/usuarios.service';
 import { DadosService } from './services/dados.service';
 import { AuthService } from './services/auth.service';
 import { Component } from '@angular/core';
 
-import { MenuController, Platform } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -14,17 +13,13 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-
-  public userLogado: Users;
-
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private authService: AuthService,
-    private dadosService: DadosService,
-    private usuariosService: UsuariosService,
-    private menu: MenuController
+    private authService : AuthService,
+    private dadosService : DadosService,
+    private usuariosService: UsuariosService
   ) {
     this.initializeApp();
   }
@@ -33,30 +28,20 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      //this.buscarDadosUsuarios();
     });
   }
 
-  onMenuOpen() {
-    this.buscarDadosUsuarios();
-  }
-
-  async logout() {
+  async logout(){
     try {
       await this.authService.logout();
-    } catch (error) {
+    } catch (error){
       console.error(error);
     }
   }
 
-  public async buscarDadosUsuarios() {
-    const user = await this.dadosService.getDados('user');
-    if (user) {
-      this.usuariosService.getById(user.uid).then(dadosUser => {
-        this.userLogado = dadosUser;
-      });
-      console.log(this.userLogado);
-    }
+  public async buscarDadosUsuarios(){
+    const user = await this.usuariosService.getById(this.dadosService.getDados('user')['user']['uid']);
+    console.log(user);
   }
-
-
 }
