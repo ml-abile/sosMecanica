@@ -1,4 +1,4 @@
-import { Users } from './interfaces/users';
+import { Usuario } from './models/usuario';
 import { UsuariosService } from './services/usuarios.service';
 import { DadosService } from './services/dados.service';
 import { AuthService } from './services/auth.service';
@@ -15,7 +15,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent {
 
-  public userLogado: Users;
+  public userLogado: Usuario;
 
   constructor(
     private platform: Platform,

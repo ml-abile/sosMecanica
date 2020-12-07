@@ -1,6 +1,6 @@
+import { Usuario } from './../../../models/usuario';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Users } from 'src/app/interfaces/users';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { DadosService } from 'src/app/services/dados.service';
 
@@ -11,7 +11,7 @@ import { DadosService } from 'src/app/services/dados.service';
   styleUrls: ['./perfil-add-edit.page.scss'],
 })
 export class PerfilAddEditPage implements OnInit {
-  public userLogado: Users;
+  public userLogado: Usuario;
   public formPerfil: FormGroup;
   public msg_validacao = {
     nome: [{tipo: 'required', mensagem: 'Campo obrigatório!'},{tipo: 'minlength', mensagem: 'Nome deve conter no minimo 3 caracteres!'}],

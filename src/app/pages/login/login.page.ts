@@ -1,8 +1,8 @@
+import { Usuario } from './../../models/usuario';
 import { UsuariosService } from './../../services/usuarios.service';
 import { Router } from '@angular/router';
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 import { AuthService } from './../../services/auth.service';
-import { Users } from './../../interfaces/users';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { AlertController, IonSlides, LoadingController, ToastController } from '@ionic/angular';
@@ -15,8 +15,8 @@ import { AlertController, IonSlides, LoadingController, ToastController } from '
 export class LoginPage implements OnInit {
   @ViewChild(IonSlides) slides: IonSlides;
 
-  public userLogin: Users = {};
-  public userRegister: Users = {};
+  public userLogin: Usuario;
+  public userRegister: Usuario;
   private loading: any;
 
   constructor(private loadingCtrl: LoadingController,

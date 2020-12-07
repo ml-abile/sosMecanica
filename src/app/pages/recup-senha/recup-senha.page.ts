@@ -1,5 +1,5 @@
+import { Usuario } from './../../models/usuario';
 import { Router } from '@angular/router';
-import { Users } from './../../interfaces/users';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
@@ -11,7 +11,7 @@ import { AlertController, ToastController } from '@ionic/angular';
 })
 export class RecupSenhaPage implements OnInit {
 
-  public user: Users = {};
+  public user: Usuario;
   constructor(private authService: AuthService, public alertController: AlertController, public router: Router, public toastCtrl: ToastController) { }
 
   ngOnInit() {

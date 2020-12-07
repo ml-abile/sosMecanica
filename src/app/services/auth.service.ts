@@ -1,5 +1,5 @@
+import { Usuario } from './../models/usuario';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { Users } from './../interfaces/users';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
 
@@ -9,11 +9,11 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   constructor(private afa: AngularFireAuth, private afs: AngularFirestoreModule) { }
 
-  login(user : Users){
+  login(user : Usuario){
     return this.afa.signInWithEmailAndPassword(user.email, user.senha);
   }
 
-  register(user: Users){
+  register(user: Usuario){
     return this.afa.createUserWithEmailAndPassword(user.email, user.senha);
   }
 
@@ -25,7 +25,7 @@ export class AuthService {
     return this.afa;
   }
 
-  resetSenha(user: Users){
+  resetSenha(user: Usuario){
     return this.afa.sendPasswordResetEmail(user.email);
   }
 }
