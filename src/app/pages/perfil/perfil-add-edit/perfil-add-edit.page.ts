@@ -1,8 +1,10 @@
+import { ToastService } from './../../../services/toast.service';
 import { Usuario } from './../../../models/usuario';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { DadosService } from 'src/app/services/dados.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -24,12 +26,18 @@ export class PerfilAddEditPage implements OnInit {
     celular: [{tipo: 'minlength', mensagem: 'Celular deve conter no minimo 10 caracteres!'}, {tipo: 'maxlength', mensagem: 'Celular deve conter no máximo 16 caracteres!'}],
     telefone: [{tipo: 'minlength', mensagem: 'Celular deve conter no minimo 10 caracteres!'}, {tipo: 'maxlength', mensagem: 'Celular deve conter no máximo 16 caracteres!'}],
   }
+ 
 
   ionViewWillEnter() {
     this.buscarDadosUsuarios();
   }
 
-  constructor(private formBuilder: FormBuilder, private usuariosService: UsuariosService, private dadosService: DadosService) {
+  constructor(private formBuilder: FormBuilder, 
+              private usuariosService: UsuariosService, 
+              private dadosService: DadosService,
+              private toastService: ToastService,
+              private router: Router,
+              private route: ActivatedRoute) {
     this.formPerfil = formBuilder.group({
       nome: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       dataNasc: ['', Validators.compose([Validators.required])],
@@ -67,5 +75,39 @@ export class PerfilAddEditPage implements OnInit {
     this.formPerfil.controls.cep.setValue(this.userLogado.cep);
     this.formPerfil.controls.celular.setValue(this.userLogado.celular);
     this.formPerfil.controls.telefone.setValue(this.userLogado.telefone);
+  }
+
+  public perfil() {
+    if (this.formPerfil.valid) {
+
+      
+      this.userLogado.dataNasc = this.formPerfil.value.dataNasc;
+      this.userLogado.endereco = this.formPerfil.value.endereco;
+      this.userLogado.numero = this.formPerfil.value.numero;
+      this.userLogado.bairro = this.formPerfil.value.bairro;
+      this.userLogado.cidade = this.formPerfil.value.cidade;
+      this.userLogado.cep = this.formPerfil.value.cep;
+      this.userLogado.celular = this.formPerfil.value.celular;
+      this.userLogado.telefone = this.formPerfil.value.telefone;    
+
+      // if (this.formPerfil.value.nome == undefined) {
+
+      //   this.usuariosService.create(perfil.uid, perfil).then(dados => {
+      //     console.log(dados);
+      //     this.toastService.presentToast('Perfil atualizado!', 3000, 'middle', 'secondary');
+      //     this.router.navigateByUrl('/home');
+      //   }).catch(erro => {
+      //     console.error(erro);
+      //   });
+      // } else {
+        this.usuariosService.update(this.userLogado.uid, this.userLogado).then(dados => {
+          console.log(dados);
+          this.toastService.presentToast('Perfil atualizado!', 3000, 'middle', 'secondary');
+          this.router.navigateByUrl('/home');
+        }).catch(erro => {
+          console.error(erro);
+        });
+      // }
+    }
   }
 }

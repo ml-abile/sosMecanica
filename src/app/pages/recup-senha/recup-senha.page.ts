@@ -11,11 +11,10 @@ import { AlertController, ToastController } from '@ionic/angular';
 })
 export class RecupSenhaPage implements OnInit {
 
-  public user: Usuario;
+  public user: Usuario = new Usuario();
   constructor(private authService: AuthService, public alertController: AlertController, public router: Router, public toastCtrl: ToastController) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   async resetSenha() {
     try {
@@ -50,7 +49,7 @@ export class RecupSenhaPage implements OnInit {
   }
 
   async presentToast(message: string) {
-    const toast = await this.toastCtrl.create({ message, duration: 2000, position: 'middle' });
+    const toast = await this.toastCtrl.create({ message, duration: 2000, position: 'middle'});
     toast.present();
   }
 }

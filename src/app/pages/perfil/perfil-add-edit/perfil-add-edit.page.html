@@ -22,9 +22,10 @@
       </ng-container>
     </ion-item>
 
-    <ion-item lines="none"> 
+    <ion-item lines="none">
       <ion-label position="stacked">Data de Nascimento</ion-label>
-      <ion-datetime formControlName="dataNasc" display-format="DD/MM/YYYY" cancelText="Cancelar" doneText="Ok" placeholder="Selecione a data"></ion-datetime>
+      <ion-datetime formControlName="dataNasc" display-format="DD/MM/YYYY" cancelText="Cancelar" doneText="Ok"
+        placeholder="Selecione a data"></ion-datetime>
       <ng-container *ngFor="let erro of msg_validacao.dataNasc">
         <span class="msg-erro"
           *ngIf="formPerfil.get('dataNasc').hasError(erro.tipo) && (formPerfil.get('dataNasc').touched)">
@@ -109,7 +110,7 @@
       </ng-container>
     </ion-item>
 
-    <ion-button class="descer" color="tertiary" expand="block">
+    <ion-button class="descer" color="tertiary" expand="block" [disabled]="!formPerfil.valid" (click)="perfil()">
       <ion-icon name="arrow-forward-outline"></ion-icon>
     </ion-button>
   </form>

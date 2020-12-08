@@ -51,7 +51,7 @@ export class AppComponent {
   ionViewWillEnter() {
     this.buscarDadosUsuarios();
   }
-  
+
   public async buscarDadosUsuarios() {
     const user = await this.dadosService.getDados('user');
     if (user) {
@@ -61,6 +61,4 @@ export class AppComponent {
       console.log(this.userLogado);
     }
   }
-
-
 }
