@@ -49,7 +49,7 @@ export class RecupSenhaPage implements OnInit {
   }
 
   async presentToast(message: string) {
-    const toast = await this.toastCtrl.create({ message, duration: 2000, position: 'middle'});
+    const toast = await this.toastCtrl.create({ message, duration: 2000, position: 'middle', color: 'secondary'});
     toast.present();
   }
 }

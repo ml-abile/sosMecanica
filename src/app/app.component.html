@@ -4,8 +4,9 @@
       <div class="menu-header-bg"></div>
       <div class="header-content">
         <!-- <img src="../assets/img/logo.png" alt=""> -->
-        <ion-label>
-          <h3>{{(userLogado) ? userLogado.displayName : ''}}</h3>
+        <ion-label style="text-align: center;" color="light">
+          <h1>{{(userLogado) ? userLogado.displayName : ''}}</h1>
+          <h2>{{(userLogado) ? userLogado.cidade : ''}}</h2>
           <!-- <p>Barra Bonita/SP</p> -->
         </ion-label>
       </div>
@@ -18,11 +19,11 @@
           <ion-item routerLink='/perfil-add-edit' (click)="buscarDadosUsuarios()">
             <ion-icon name="person-outline"></ion-icon>Perfil
           </ion-item>
-          <ion-item routerLink='/consulta-agendamentos'>
-            <ion-icon name="calendar-outline"></ion-icon>Meus Agendamentos
-          </ion-item>
           <ion-item routerLink='/consulta-veiculos'>
             <ion-icon name="car-sport-outline"></ion-icon>Meus Veículos
+          </ion-item>
+          <ion-item routerLink='/consulta-agendamentos'>
+            <ion-icon name="calendar-outline"></ion-icon>Meus Agendamentos
           </ion-item>
           <!-- <ion-item>
             <ion-icon name="settings-outline"></ion-icon>Configurações
@@ -33,15 +34,16 @@
         </ion-menu-toggle>
       </ion-list>
 
-      <!-- <ion-list class="menu-items" lines="none"> 
+      <!-- <ion-list class="menu-items" lines="none">
         <center>
-          <ion-icon name="logo-facebook"></ion-icon>
+          <ion-icon href="https://www.facebook.com" name="logo-facebook"></ion-icon>
 
-          <ion-icon name="logo-instagram"></ion-icon>
+          <ion-icon routerLink="www.google.com" name="logo-instagram"></ion-icon>
 
-          <ion-icon name="logo-twitter"></ion-icon>
+          <ion-icon routerLink="www.google.com" name="logo-twitter"></ion-icon>
         </center>
       </ion-list> -->
+
     </ion-content>
   </ion-menu>
   <ion-router-outlet id="main"></ion-router-outlet>
