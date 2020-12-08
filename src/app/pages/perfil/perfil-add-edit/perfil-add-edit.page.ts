@@ -25,6 +25,9 @@ export class PerfilAddEditPage implements OnInit {
     telefone: [{tipo: 'minlength', mensagem: 'Celular deve conter no minimo 10 caracteres!'}, {tipo: 'maxlength', mensagem: 'Celular deve conter no máximo 16 caracteres!'}],
   }
 
+  ionViewWillEnter() {
+    this.buscarDadosUsuarios();
+  }
 
   constructor(private formBuilder: FormBuilder, private usuariosService: UsuariosService, private dadosService: DadosService) {
     this.formPerfil = formBuilder.group({
@@ -48,8 +51,21 @@ export class PerfilAddEditPage implements OnInit {
     if (user) {
       this.usuariosService.getById(user.uid).then(dadosUser => {
         this.userLogado = dadosUser;
+        this.preencheFormulario(); 
       });
       console.log(this.userLogado);
     }
+  }
+
+  preencheFormulario() {
+    this.formPerfil.controls.nome.setValue(this.userLogado.nome);
+    this.formPerfil.controls.dataNasc.setValue(this.userLogado.dataNasc);
+    this.formPerfil.controls.endereco.setValue(this.userLogado.endereco);
+    this.formPerfil.controls.numero.setValue(this.userLogado.numero);
+    this.formPerfil.controls.bairro.setValue(this.userLogado.bairro);
+    this.formPerfil.controls.cidade.setValue(this.userLogado.cidade);
+    this.formPerfil.controls.cep.setValue(this.userLogado.cep);
+    this.formPerfil.controls.celular.setValue(this.userLogado.celular);
+    this.formPerfil.controls.telefone.setValue(this.userLogado.telefone);
   }
 }

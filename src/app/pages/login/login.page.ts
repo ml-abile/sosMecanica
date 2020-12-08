@@ -15,8 +15,8 @@ import { AlertController, IonSlides, LoadingController, ToastController } from '
 export class LoginPage implements OnInit {
   @ViewChild(IonSlides) slides: IonSlides;
 
-  public userLogin: Usuario;
-  public userRegister: Usuario;
+  public userLogin: Usuario = new Usuario();
+  public userRegister: Usuario = new Usuario();
   private loading: any;
 
   constructor(private loadingCtrl: LoadingController,
